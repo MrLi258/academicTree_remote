@@ -104,7 +104,7 @@ def write_failed(name, url, code):
             writer = csv.writer(wfile)
             writer.writerow([name, url, code])
 
-def getCompleteAuthorInfoMultiThreaded(max_threads=10):
+def getCompleteAuthorInfoMultiThread(max_threads=10):
     all_results = []
     batch_size = 50
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
@@ -132,5 +132,5 @@ def save_results(results):
 
 if __name__ == "__main__":
     create_not200_csv_if_not_exists()
-    getCompleteAuthorInfoMultiThreaded(max_threads=10)
+    getCompleteAuthorInfoMultiThread(max_threads=10)
     replaceFileInplace('./completeAuthorInfo.json')
