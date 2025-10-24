@@ -14,6 +14,7 @@ from DrissionPage._configs.chromium_options import ChromiumOptions
 from DrissionPage import ChromiumPage
 from jsonFileRepair import replaceFileInplace
 MAX_THREAD = 2
+MAX_PROCESSORS = 1
 def getExistAuthorInfo():
     filePath = './completeAuthorInfo.json'
     idSet = set()

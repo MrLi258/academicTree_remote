@@ -260,7 +260,7 @@ def verify_split_files(original_file):
     for detail in file_details:
         print(f"{detail['filename']}: {detail['elements']} 个元素, {detail['size'] / (1024 * 1024):.2f} MB")
 
-
+# 参数: {'locator': 'css:td:nth-child(1) a', 'index': 1, 'timeout': 10}
 # 使用示例
 if __name__ == "__main__":
     # 配置参数

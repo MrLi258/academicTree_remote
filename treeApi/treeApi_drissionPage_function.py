@@ -190,7 +190,6 @@ def getCompleteAuthorInfo(meta_list, proc_idx, field, searchName):
         except:
             return False
 
-
 def saveInfo2(infoList, field, searchName):
     if infoList is not None:
         base_path = "./completeInfo/" + f"{field}/"
