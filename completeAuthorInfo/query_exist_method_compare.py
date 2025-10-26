@@ -65,7 +65,7 @@ def compare_methods():
     conn.close()
 
 
-def get_parents_and_children_set(folder_path):
+def get_parents_and_children_set(folder_path, id_to_url):
     total_parents_and_children_set = set()
     for filename in os.listdir(folder_path):
         if filename.endswith(".json"):
@@ -80,11 +80,16 @@ def get_parents_and_children_set(folder_path):
                     if 'parentsIdList' in entry:
                         if entry['parentsIdList']:
                             for meta in entry['parentsIdList']:
-                                total_parents_and_children_set.add(meta)
+                                # print(meta, type(meta))
+                                flag, url = check_in_memory(id_to_url, meta)
+                                if not flag:
+                                    total_parents_and_children_set.add(meta)
                     if 'childrenIdList' in entry:
                         if entry['childrenIdList']:
                             for meta in entry['childrenIdList']:
-                                total_parents_and_children_set.add(meta)
+                                flag, url = check_in_memory(id_to_url, meta)
+                                if not flag:
+                                    total_parents_and_children_set.add(meta)
     print(f'目前总共需要添加的所有父子节点为数量为：{len(total_parents_and_children_set)} <UNK>')
     return total_parents_and_children_set
 
@@ -95,7 +100,12 @@ if __name__ == "__main__":
     # conn = connect_to_mysql()
     # cursor = conn.cursor()
     # id_to_url = load_ids_and_urls_into_memory(cursor)
-    # print(check_in_memory(id_to_url ,'5067'))
+    # # print(check_in_memory(id_to_url ,'5067'))
+    #
+    # get_parents_and_children_set('./completeAuthorJsons/', id_to_url)
 
-    get_parents_and_children_set('./completeAuthorJsons/')
-
+    data = {
+        "1":{
+            "":[],
+        }
+    }
